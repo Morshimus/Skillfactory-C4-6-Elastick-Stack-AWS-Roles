@@ -1,5 +1,7 @@
 ---
-kibana_version: "7.x"
+kb_repo_base: https://artifacts.elastic.co
+
+kibana_version: "7.12.0"
 
 kibana_package: kibana
 kibana_package_state: present

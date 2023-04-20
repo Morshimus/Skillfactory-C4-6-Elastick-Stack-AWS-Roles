@@ -1,0 +1,27 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  roles:
+   - role: tests/test_port
+     vars:
+       port: "5601"
+   - role: tests/test_kibana_web
+     vars:
+       port: "5601"           
+  tasks:
+
+  - name: check kibana port result 
+    assert:
+        that:
+           - "{{ output_port.failed }} == false"    
+  
+  - name: check kibana web page
+    assert:
+        that:
+           - "'HTTP/1.1 200 OK' in  output_kibana_web.stdout"
+
+
+
