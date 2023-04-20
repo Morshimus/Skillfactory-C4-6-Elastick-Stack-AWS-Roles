@@ -1,0 +1,7 @@
+---
+# tasks file for test_port
+  - name: test elasticsearch data link
+    shell: curl -X GET http://localhost:{{ port }} -s  
+    args:
+     executable: /bin/bash
+    register: output_elasticsearch_data_link
