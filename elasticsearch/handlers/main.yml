@@ -10,10 +10,19 @@
   when:
     - es_restart_on_change
     - es_start_service
-    - molecule_yml is not defined and ansible_os_family != 'Debian'
+    - molecule_yml is not defined 
   register: es_restarted
 
-- name: restart elasticsearch MOLECULE
+- name: restart elasticsearch  CentOS7 MOLECULE
+  service: name=elasticsearch state=restarted enabled=yes
+  when:
+    - es_restart_on_change
+    - es_start_service
+    - molecule_yml is defined and ansible_os_family == 'RedHat'
+  register: es_restarted
+
+
+- name: restart elasticsearch Ubuntu MOLECULE
   shell: >
     skill -u elasticsearch && \
     chown  -R elasticsearch:elasticsearch /var/run/elasticsearch/ && \

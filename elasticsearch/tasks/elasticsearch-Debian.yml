@@ -113,7 +113,7 @@
     - es_use_repository
     - molecule_yml is defined
   register: debian_elasticsearch_install_from_repo
-  notify: restart elasticsearch MOLECULE
+  notify: restart elasticsearch Ubuntu MOLECULE
   environment:
     ES_PATH_CONF: "{{ es_conf_dir }}"
 

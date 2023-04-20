@@ -66,9 +66,16 @@
   service: name=elasticsearch state=started enabled=yes
   when: 
     - es_start_service
-    - molecule_yml is not defined and ansible_os_family != "Debian"
+    - molecule_yml is not defined
 
-- name: Make sure elasticsearch is started MOLECULE
+
+- name: Make sure elasticsearch is started CentOS7 MOLECULE
+  service: name=elasticsearch state=started enabled=yes
+  when: 
+    - es_start_service
+    - molecule_yml is defined and ansible_os_family == "RedHat"
+
+- name: Make sure elasticsearch is started Ubuntu MOLECULE
   shell: ps -u elasticsearch | grep java
   args:
     executable: /bin/bash

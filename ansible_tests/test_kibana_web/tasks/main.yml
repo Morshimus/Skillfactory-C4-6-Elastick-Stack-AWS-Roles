@@ -1,0 +1,7 @@
+---
+# tasks file for test_port
+  - name: test kibana web page
+    shell: curl -X GET http://localhost:{{ port }} -s  
+    args:
+     executable: /bin/bash
+    register: output_kibana_web
