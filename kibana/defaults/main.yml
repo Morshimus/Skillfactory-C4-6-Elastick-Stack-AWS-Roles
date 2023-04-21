@@ -1,4 +1,6 @@
 ---
+with_elasticsearch: true
+
 kb_repo_base: https://artifacts.elastic.co
 
 kibana_version: "7.12.0"

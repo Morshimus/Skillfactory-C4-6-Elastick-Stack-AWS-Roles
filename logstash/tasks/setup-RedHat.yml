@@ -12,5 +12,5 @@
 
 - name: Install Logstash.
   package:
-    name: '{{ logstash_package }}'
+    name: '{{ logstash_package }}{% if logstash_version is defined and logstash_version != ""  %}-{{ logstash_version }}{% endif %}'
     state: present

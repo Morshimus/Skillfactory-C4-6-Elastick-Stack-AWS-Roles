@@ -3,7 +3,7 @@
   include_role:
     name: elasticsearch
   when:
-    - molecule_yml is defined
+    - molecule_yml is defined and with_elasticsearch
 
 
 - set_fact: "kb_major_version={{ kibana_version.split('.')[0] }}.x"

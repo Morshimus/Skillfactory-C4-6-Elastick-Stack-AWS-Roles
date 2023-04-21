@@ -154,6 +154,8 @@ function molecule {
     
      try{Copy-Item  -ErrorAction Stop -Force  $path/$role/molecule.yml $path/molecule/$role/molecule/default/molecule.yml}catch{write-host -f magenta "There is no file molecule.yml!"}
 
+     try{Copy-Item  -ErrorAction Stop -Force  $path/$role/converge.yml $path/molecule/$role/molecule/default/converge.yml}catch{write-host -f magenta "There is no file converge.yml!"}
+
      docker inspect molecule-$role | Out-Null; if($?){
      docker exec -ti molecule-$role  /bin/sh -c  "cd ./$role && molecule converge"
      }else{

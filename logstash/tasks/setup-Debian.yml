@@ -9,18 +9,18 @@
 
 - name: Add Elasticsearch apt key.
   apt_key:
-    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    url: "{{ ls_repo_base }}/GPG-KEY-elasticsearch"
     state: present
 
 - name: Add Logstash repository.
   apt_repository:
-    repo: 'deb https://artifacts.elastic.co/packages/{{ logstash_version }}/apt stable main'
+    repo: 'deb {{ ls_repo_base }}/packages/{{ ls_repo_name }}/apt stable main'
     state: present
     update_cache: true
 
 - name: Install Logstash.
   apt:
-    name: '{{ logstash_package }}'
+    name: '{{ logstash_package }}{% if logstash_version is defined and logstash_version != ""  %}{% endif %}'
     state: present
 
 - name: Add Logstash user to adm group (Debian).
