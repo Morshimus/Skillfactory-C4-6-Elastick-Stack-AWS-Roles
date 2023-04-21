@@ -10,6 +10,19 @@ cluster.name: elasticsearch
 node.name: {{inventory_hostname}}
 {% endif %}
 
+{% if es_config['network.host'] is not defined %}
+network.host: {{ es_network_host }}
+{% endif %}
+
+{% if es_config['discovery.seed_hosts'] is not defined %}
+discovery.seed_hosts: ["127.0.0.1", "[::1]"]
+{% endif %}
+
+{% if es_config['discovery.type'] is not defined %}
+discovery.type: single-node
+{% endif %}
+
+
 #################################### Paths ####################################
 
 # Path to directory containing configuration (this file and logging.yml):

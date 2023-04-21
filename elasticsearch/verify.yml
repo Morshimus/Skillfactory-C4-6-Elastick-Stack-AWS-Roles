@@ -7,10 +7,13 @@
   roles:
    - role: tests/test_port
      vars:
-       port: "9201"
+       port: "9200"
    - role: tests/test_elasticsearch_data_link
      vars:
-       port: "9201"  
+       port: "9200"  
+   - role: tests/test_elasticsearch_cat_indicies
+     vars:
+       port: "9200"         
   vars:
     version: "7.12.0"          
   tasks:
@@ -24,6 +27,11 @@
     assert:
         that:
            - "'{{ version }}' in  output_elasticsearch_data_link.stdout"
+
+  - name: check elasticsearch indicies access work result 
+    assert:
+        that:
+           - "'health' in  output_elasticsearch_cat_indicies.stdout"
 
 
 
