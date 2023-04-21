@@ -29,3 +29,14 @@
     group: logstash
     groups: adm
   notify: restart logstash
+  when: molecule_yml is in not defined
+
+- name: Add Logstash user to adm group (Debian). MOLECULE
+  user:
+    name: logstash
+    group: logstash
+    groups: adm
+  notify: restart logstash MOLECULE
+  when: molecule_yml is defined
+
+

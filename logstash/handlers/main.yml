@@ -1,3 +1,11 @@
 ---
 - name: restart logstash
   service: name=logstash state=restarted
+
+- name: restart logstash MOLECULE
+  shell: |
+    systemctl stop logstash && \
+    skill -u logstash && \
+    /usr/share/logstash/bin/logstash --path.settings /etc/logstash &
+  args:
+    executable: //bin/bash
