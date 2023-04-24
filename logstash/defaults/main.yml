@@ -20,6 +20,7 @@ logstash_elasticsearch_hosts:
 
 logstash_local_syslog_path: /var/log/syslog
 logstash_monitor_local_syslog: true
+logstash_monitor_remote_syslog: true
 
 logstash_dir: /usr/share/logstash
 

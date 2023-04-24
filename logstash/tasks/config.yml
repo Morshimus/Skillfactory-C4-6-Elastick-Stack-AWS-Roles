@@ -38,6 +38,16 @@
   when: logstash_monitor_local_syslog
   notify: restart logstash
 
+- name: Create Logstash configuration file for remote syslog input.
+  template:
+    src: 03-jenkins-syslog-input.conf.j2
+    dest: /etc/logstash/conf.d/03-jenkins-syslog-input.conf
+    owner: root
+    group: root
+    mode: 0644
+  when: logstash_monitor_remote_syslog
+  notify: restart logstash
+
 - name: Ensure configuration for local syslog is absent if disabled.
   file:
     path: /etc/logstash/conf.d/02-local-syslog-input.conf
